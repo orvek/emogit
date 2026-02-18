@@ -9,7 +9,15 @@
     "url": "https://orvek.dev"
   },
   "icon": "images/icon.png",
-  "version": "0.0.1",
+  "version": "1.0.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/orvek/emogit.git"
+  },
+  "homepage": "https://github.com/orvek/emogit/blob/main/README.md",
+  "bugs": {
+    "url": "https://github.com/orvek/emogit/issues"
+  },
   "engines": {
     "vscode": "^1.109.0"
   },
