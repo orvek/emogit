@@ -18,6 +18,8 @@ Contenido: [Características](#-características) • [Instalación](#-instalaci
 
 ## 📸 Screenshot
 
+![Screenshot](images/screenshot.gif)
+
 ![Screenshot](images/screenshot.png)
 
 ## 🚀 Instalación
