@@ -8,6 +8,7 @@
     "email": "orvek.dev@gmail.com",
     "url": "https://orvek.dev"
   },
+  "icon": "images/icon.png",
   "version": "0.0.1",
   "engines": {
     "vscode": "^1.109.0"
