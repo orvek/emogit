@@ -1,6 +1,6 @@
 # Emogit
 
-![version](https://img.shields.io/badge/version-1.0.1-blue.svg) ![VS Code](https://img.shields.io/badge/VS%20Code-1.70%2B-blue.svg) ![license](https://img.shields.io/badge/license-MIT-green.svg)
+![version](https://img.shields.io/badge/version-1.0.0-blue.svg) ![VS Code](https://img.shields.io/badge/VS%20Code-1.70%2B-blue.svg) ![license](https://img.shields.io/badge/license-MIT-green.svg)
 
 > Inserta emojis en el terminal integrado de VS Code con un clic. Los emojis quedan visibles y válidos en los commits de Git.
 
