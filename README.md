@@ -22,6 +22,8 @@ Contenido: [Características](#-características) • [Instalación](#-instalaci
 
 ![Screenshot](images/screenshot.png)
 
+![Screenshot](images/demo.png)
+
 ## 🚀 Instalación
 
 ### Desde el Marketplace de VS Code
