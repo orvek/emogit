@@ -1,26 +1,77 @@
-// The module 'vscode' contains the VS Code extensibility API
-// Import the module and reference it with the alias vscode in your code below
 import * as vscode from 'vscode';
+import { emojis } from './emojis';
 
-// This method is called when your extension is activated
-// Your extension is activated the very first time the command is executed
 export function activate(context: vscode.ExtensionContext) {
 
-	// Use the console to output diagnostic information (console.log) and errors (console.error)
-	// This line of code will only be executed once when your extension is activated
-	console.log('Congratulations, your extension "emogit" is now active!');
+	const statusBarButton = vscode.window.createStatusBarItem(
+		vscode.StatusBarAlignment.Right,
+		100
+	);
 
-	// The command has been defined in the package.json file
-	// Now provide the implementation of the command with registerCommand
-	// The commandId parameter must match the command field in package.json
-	const disposable = vscode.commands.registerCommand('emogit.helloWorld', () => {
-		// The code you place here will be executed every time your command is executed
-		// Display a message box to the user
-		vscode.window.showInformationMessage('Hello World from emogit!');
+	statusBarButton.text = "$(smiley) Emogit";
+	statusBarButton.tooltip = "Click to select an emoji for your commit";
+	statusBarButton.command = "emogit.showMenu";
+	statusBarButton.show();
+ 
+	const disposable = vscode.commands.registerCommand('emogit.showMenu', async () => {
+		await showEmojiMenu();
 	});
 
+	context.subscriptions.push(statusBarButton);
 	context.subscriptions.push(disposable);
 }
 
-// This method is called when your extension is deactivated
+async function showEmojiMenu() {
+	const quickPick = vscode.window.createQuickPick();
+	
+	quickPick.title = "Select an emoji for your commit";
+	quickPick.placeholder = "Type to search or select an emoji...";
+	quickPick.items = emojis.map(emoji => ({
+		label: `${emoji.icon} ${emoji.name}`,
+		description: emoji.value, 
+		value: emoji.value
+	}));
+
+	quickPick.onDidAccept(async () => {
+		const selected = quickPick.selectedItems[0];
+		if (selected) {
+			const emoji = emojis.find(e => `${e.icon} ${e.name}` === selected.label);
+			if (emoji) {
+				await insertInTerminal(emoji.value);
+			}
+		}
+		quickPick.hide();
+	});
+	
+	quickPick.onDidChangeSelection(async (selectedItems) => {
+		// Select with Enter key
+	});
+	
+	quickPick.show();
+}
+
+async function insertInTerminal(value: string) {
+	try {
+		const terminal = vscode.window.activeTerminal;
+		
+		if (!terminal) {
+			vscode.window.showInformationMessage('Making a new terminal ...');
+			const newTerminal = vscode.window.createTerminal('Emoji Git');
+			newTerminal.show();
+			setTimeout(() => {
+				newTerminal.sendText(value, false);
+				newTerminal.show();
+			}, 300);
+		} else {
+			terminal.sendText(value, false);
+			terminal.show();
+		}
+		
+		vscode.window.showInformationMessage(`Inserted: "${value}" at therminal`); 
+		
+	} catch (error) {
+		vscode.window.showErrorMessage('Error inserting emoji into terminal');
+	}
+}
+
 export function deactivate() {}
