@@ -20,6 +20,9 @@ Contents: [Features](#-features) • [Installation](#-installation) • [Usage](
 
 ![Screenshot](images/screenshot.gif)
 
+![Screenshot](images/feat-fix-btn.png)
+
+## 📸 Result
 ![Screenshot](images/demo.png)
 
 ## 🚀 Installation

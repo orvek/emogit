@@ -1,11 +1,12 @@
 import * as vscode from 'vscode';
 import { emojis } from './emojis';
+import { commits } from "./conventional-commits";
 
 export function activate(context: vscode.ExtensionContext) {
 
 	const statusBarButton = vscode.window.createStatusBarItem(
 		vscode.StatusBarAlignment.Right,
-		100
+		500
 	);
 
 	statusBarButton.text = "$(smiley) Emogit";
@@ -19,6 +20,30 @@ export function activate(context: vscode.ExtensionContext) {
 
 	context.subscriptions.push(statusBarButton);
 	context.subscriptions.push(disposable);
+
+	// 
+	commits.forEach((commit, index) => {
+		const button = vscode.window.createStatusBarItem(
+			vscode.StatusBarAlignment.Right,
+			499 - index
+		);
+		
+		button.text = `${commit.icon} ${commit.name}`;
+		button.tooltip = `Insert ${commit.name} commit`;
+		button.command = `emogit.insert.${commit.name.toLowerCase()}`;
+		button.show();
+		
+		const commitCommand = vscode.commands.registerCommand(
+			`emogit.insert.${commit.name.toLowerCase()}`, 
+			async () => {
+				await insertInTerminal(commit.value);
+			}
+		);
+		
+		context.subscriptions.push(button);
+		context.subscriptions.push(commitCommand);
+	});
+
 }
 
 async function showEmojiMenu() {

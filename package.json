@@ -9,7 +9,7 @@
     "url": "https://orvek.dev"
   },
   "icon": "images/icon.png",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "repository": {
     "type": "git",
     "url": "https://github.com/orvek/emogit.git"
@@ -33,6 +33,16 @@
       {
         "command": "emogit.showMenu",
         "title": "Select commit emoji",
+        "category": "Emogit"
+      },
+      {
+        "command": "emogit.insert.feat",
+        "title": "Insert Feat commit",
+        "category": "Emogit"
+      },
+      {
+        "command": "emogit.insert.fix",
+        "title": "Insert Fix commit",
         "category": "Emogit"
       }
     ]
